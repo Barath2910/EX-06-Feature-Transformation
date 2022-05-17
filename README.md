@@ -18,6 +18,118 @@ Apply Feature Transformation techniques to all the feature of the data set
 Save the data to the file
 
 
-# CODE
+# CODE:
+```
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+import scipy.stats as stats
 
-# OUPUT
+df=pd.read_csv("Data_To_Transform.csv")
+df
+
+df.skew()
+
+np.log(df["Highly Positive Skew"])
+
+np.reciprocal(df["Moderate Positive Skew"])
+
+np.sqrt(df["Highly Positive Skew"])
+
+np.square(df["Highly Negative Skew"])
+
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+
+df["Moderate Positive Skew_yeojohnson"], parameters=stats.yeojohnson(df["Moderate Positive Skew"])
+df
+
+df["Moderate Negative Skew_yeojohnson"], parameters=stats.yeojohnson(df["Moderate Negative Skew"])
+df
+
+df["Highly Negative Skew_yeojohnson"], parameters=stats.yeojohnson(df["Highly Negative Skew"])
+df
+
+df.skew()
+
+from sklearn.preprocessing import QuantileTransformer 
+qt=QuantileTransformer(output_distribution='normal')
+
+df["Moderate Negative Skew_1"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+sm.qqplot(df['Moderate Negative Skew'],line='45')
+plt.show()
+
+sm.qqplot(df['Moderate Negative Skew_1'],line='45')
+plt.show()
+
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df['Highly Negative Skew'],line='45')
+plt.show()
+
+sm.qqplot(df['Highly Negative Skew_1'],line='45')
+plt.show()
+
+df["Moderate Positive Skew_1"]=qt.fit_transform(df[["Moderate Positive Skew"]])
+sm.qqplot(df['Moderate Positive Skew'],line='45')
+plt.show()
+
+sm.qqplot(df['Moderate Positive Skew_1'],line='45')
+plt.show()
+
+df["Highly Positive Skew_1"]=qt.fit_transform(df[["Highly Positive Skew"]])
+sm.qqplot(df['Highly Positive Skew'],line='45')
+plt.show()
+
+sm.qqplot(df['Highly Positive Skew_1'],line='45')
+plt.show()
+
+df
+```
+# OUPUT:
+
+![output](./op1.png)
+![output](./op2.png)
+![output](./op3.png)
+![output](./op4.png)
+![output](./op5.png)
+![output](./op6.png)
+![output](./op7.png)
+![output](./op8.png)
+![output](./op9.png)
+![output](./op10.png)
+![output](./op11.png)
+![output](./op12.png)
+![output](./op13.png)
+![output](./op14.png)
+![output](./op15.png)
+![output](./op16.png)
+![output](./op17.png)
+![output](./op18.png)
+![output](./op19.png)
+![output](./op20.png)
+# OUTPUT FOR titanic_dataset.csv:
+![output](./1.png)
+![output](./2.png)
+![output](./3.png)
+![output](./4.png)
+![output](./5.png)
+![output](./6.png)
+![output](./7.png)
+![output](./8.png)
+![output](./9.png)
+![output](./10.png)
+![output](./11.png)
+![output](./12.png)
+![output](./13.png)
+![output](./14.png)
+![output](./15.png)
+![output](./16.png)
+![output](./17.png)
+![output](./18.png)
+![output](./19.png)
+![output](./20.png)
+![output](./21.png)
+# RESULT: 
+The various feature transformation techniques has been performed on the given datasets and the data are saved to a file.
